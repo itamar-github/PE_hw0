@@ -35,6 +35,19 @@ public class Main {
     }
 
     /**
+     * @param c the letter to turn to lowercase
+     * @return the letter as a lowercase
+     */
+    public static char toLowerCase(char c)
+    {
+        if(c >= 'A' && c <= 'Z')
+        {
+            return (char)(c + ('a'-'A'));
+        }
+        return c;
+    }
+
+    /**
      * Compresses a given string.
      *
      * The compression process is done by replacing a sequence of identical consecutive characters
@@ -46,14 +59,6 @@ public class Main {
      * @return The compressed version of the string
      */
     public static String compressString(String stringToCompress) {
-        String compressedString = "";
-
-        /*
-        TODO: Your code for part B1 is here...
-        Note: you may change the given code, but you must not change the signature of the method.
-         */
-
-        return compressedString;
     }
 
     /**
