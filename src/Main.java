@@ -11,40 +11,9 @@ public class Main {
      * @param grade The grade
      */
     public static void gradeMessage(int grade) {
-        // get second decimal
-        int tens = grade / 10;
-        // print message
-        switch(tens)
-        {
-            case 10:
-                System.out.println("Excellent");
-                break;
-            case 9:
-                System.out.println("Great");
-                break;
-            case 8:
-                System.out.println("Very good");
-                break;
-            case 7:
-                System.out.println("Good");
-                break;
-            default:
-                System.out.println("OK");
-                break;
-        }
-    }
-
-    /**
-     * @param c the letter to turn to lowercase
-     * @return the letter as a lowercase
-     */
-    public static char toLowerCase(char c)
-    {
-        if(c >= 'A' && c <= 'Z')
-        {
-            return (char)(c + ('a'-'A'));
-        }
-        return c;
+        /*
+        TODO: Your code for part A is here...
+         */
     }
 
     /**
@@ -59,6 +28,23 @@ public class Main {
      * @return The compressed version of the string
      */
     public static String compressString(String stringToCompress) {
+        String compressedString = "";
+        StringBuilder compressedStringHelp= new StringBuilder();
+        int countConsecutive= 0;
+        for (int i= 0; i< stringToCompress.length(); i++)
+        {
+            countConsecutive++;
+            // If next character is different than current append this char to result
+            if (i+ 1 >= stringToCompress.length()
+                    || stringToCompress.charAt(i) != stringToCompress.charAt(i+ 1))
+            {
+                compressedStringHelp.append(stringToCompress.charAt(i));
+                compressedStringHelp.append(countConsecutive);
+                countConsecutive= 0;
+            }
+        }
+        compressedString = compressedStringHelp.toString();
+        return compressedString;
     }
 
     /**
