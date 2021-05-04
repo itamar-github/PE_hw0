@@ -11,9 +11,27 @@ public class Main {
      * @param grade The grade
      */
     public static void gradeMessage(int grade) {
-        /*
-        TODO: Your code for part A is here...
-         */
+        // get second decimal
+        int tens = grade / 10;
+        // print message
+        switch(tens)
+        {
+            case 10:
+                System.out.println("Excellent");
+                break;
+            case 9:
+                System.out.println("Great");
+                break;
+            case 8:
+                System.out.println("Very good");
+                break;
+            case 7:
+                System.out.println("Good");
+                break;
+            default:
+                System.out.println("OK");
+                break;
+        }
     }
 
     /**
