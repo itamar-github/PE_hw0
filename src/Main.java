@@ -71,10 +71,7 @@ public class Main {
      */
     public static boolean isNumber(char c)
     {
-        if(c >= '0' && c <= '9')
-            return true;
-        else
-            return false;
+        return (c >= '0' && c <= '9');
     }
     /**
      * Decompresses a given string.
@@ -94,14 +91,12 @@ public class Main {
         StringBuilder supportNumBuilder = new StringBuilder();
         StringBuilder supportStringBuilder = new StringBuilder();
 
-        String currString = "";
-
         // support variables
         char currChar;
         char nextChar;
         boolean isCurrCharNum;
         boolean isNextCharNum;
-        int supportNum = 0;
+        int supportNum;
         int compressedStringLen = compressedString.length();
         String supportString = "";
 
