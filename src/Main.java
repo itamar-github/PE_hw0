@@ -11,9 +11,27 @@ public class Main {
      * @param grade The grade
      */
     public static void gradeMessage(int grade) {
-        /*
-        TODO: Your code for part A is here...
-         */
+        // get second decimal
+        int tens = grade / 10;
+        // print message
+        switch(tens)
+        {
+            case 10:
+                System.out.println("Excellent");
+                break;
+            case 9:
+                System.out.println("Great");
+                break;
+            case 8:
+                System.out.println("Very good");
+                break;
+            case 7:
+                System.out.println("Good");
+                break;
+            default:
+                System.out.println("OK");
+                break;
+        }
     }
 
     /**
@@ -48,6 +66,17 @@ public class Main {
     }
 
     /**
+     * @param c the char to check if is a number
+     * @return true if char is a number or false otherwise
+     */
+    public static boolean isNumber(char c)
+    {
+        if(c >= '0' && c <= '9')
+            return true;
+        else
+            return false;
+    }
+    /**
      * Decompresses a given string.
      *
      * The decompression process is done by duplicating each sequence of characters
@@ -61,12 +90,73 @@ public class Main {
     public static String decompressString(String compressedString) {
         String decompressedString = "";
 
-        /*
-        TODO: Your code for part B2 is here...
-        Note: you may change the given code, but you must not change the signature of the method.
-         */
+        StringBuilder decompressedBuilder = new StringBuilder();
+        StringBuilder supportNumBuilder = new StringBuilder();
+        StringBuilder supportStringBuilder = new StringBuilder();
 
-        return compressedString;
+        String currString = "";
+
+        // support variables
+        char currChar;
+        char nextChar;
+        boolean isCurrCharNum;
+        boolean isNextCharNum;
+        int supportNum = 0;
+        int compressedStringLen = compressedString.length();
+        String supportString = "";
+
+        for(int i = 0; i < compressedStringLen - 1; i++)
+        {
+            currChar = compressedString.charAt(i);
+            nextChar = compressedString.charAt(i+1);
+
+            isCurrCharNum = isNumber(currChar);
+            isNextCharNum = isNumber(nextChar);
+
+            // if this is the last iteration
+            if(i == compressedStringLen - 2) {
+                // there are only numbers as last characters in the compressed string
+                supportNumBuilder.append(nextChar);
+
+                if(isCurrCharNum){
+                    supportNumBuilder.append(currChar);
+                }
+                else {
+                    supportStringBuilder.append(currChar);
+                }
+
+                supportString = supportStringBuilder.toString();
+                supportNum = Integer.parseInt(supportNumBuilder.toString());
+
+                for(int j = 0; j < supportNum; j++){
+                    decompressedBuilder.append(supportString);
+                }
+
+                decompressedString = decompressedBuilder.toString();
+
+                return decompressedString;
+            }
+
+            // otherwise
+            if((isCurrCharNum && !isNextCharNum)) {
+                supportNumBuilder.append(currChar);
+                supportString = supportStringBuilder.toString();
+                supportStringBuilder.setLength(0);
+                supportNum = Integer.parseInt(supportNumBuilder.toString());
+                supportNumBuilder.setLength(0);
+
+                for(int j = 0; j < supportNum; j++){
+                    decompressedBuilder.append(supportString);
+                }
+            }
+            else if(isCurrCharNum) {
+                supportNumBuilder.append(currChar);
+            }
+            else {
+                supportStringBuilder.append(currChar);
+            }
+        }
+        return decompressedString;
     }
 
     public static void main(String[] args) throws FileNotFoundException {
